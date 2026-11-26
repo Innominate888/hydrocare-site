@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HV Hydrocare Slovakia — prírodná anti-ageing kozmetika</title>
+  <meta name="description" content="HV Hydrocare — vegánska, prírodná anti-ageing kozmetika z 70-ročnej tradície rodiny Harangvölgyi. Starostlivosť o tvár, telo, oči a vlasy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#produkty">Preskočiť na produkty</a>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="HV Hydrocare — domov">
+      <img src="img/logo.png" alt="HV Hydrocare Slovakia" class="brand-logo" width="1000" height="934">
+    </a>
+    <nav aria-label="Hlavná navigácia">
+      <a href="#pribeh">Príbeh</a>
+      <a href="#produkty">Produkty</a>
+      <a href="#ritual">Rituál</a>
+      <a href="#ocenenia">Ocenenia</a>
+      <a href="#kontakt" class="nav-cta">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <img class="hero-fallback" src="img/lineup.jpg" alt="" hidden>
+      <div class="hero-copy">
+        <p class="eyebrow">Harangvölgyi · 70 rokov starostlivosti o krásu</p>
+        <h1>Hydratácia,<br><em>ktorá omladzuje.</em></h1>
+        <p class="lead">Prírodná a vegánska anti-ageing kozmetika s kyselinou hyalurónovou a kolagénom. Šetrná ku všetkým typom pleti, aj k tej najcitlivejšej.</p>
+        <div class="hero-actions">
+          <a href="#produkty" class="btn btn-primary">Objaviť produkty</a>
+          <a href="#pribeh" class="btn btn-ghost">Náš príbeh</a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span>Scrollujte</div>
+    </section>
+
+    <!-- PRÍBEH -->
+    <section class="story" id="pribeh">
+      <div class="wrap story-grid">
+        <div class="reveal">
+          <p class="eyebrow dark">Prečo práve HV Hydrocare?</p>
+          <h2>Rodinná tradícia,<br><em>ktorá pozná pleť.</em></h2>
+          <p>Značka <b>Harangvölgyi</b> je špecialistom na anti-ageing — na jej ošetrenia prichádzajú ľudia z celého sveta. Už viac ako 70 rokov vyvíja kozmetiku, ktorá úspešne bojuje proti starnutiu pleti.</p>
+          <p>Výrobky sú z bioaktívnych látok podobných koži, navzájom sa synergicky dopĺňajú a posilňujú svoje účinky. Koncept vytvorila zakladateľka <b>Anna Harangvölgyi</b>, špecialistka na boj proti starnutiu, so svojím manželom <b>Zoltánom Keszeim</b>.</p>
+        </div>
+        <ul class="stats reveal" aria-label="Fakty o značke">
+          <li><strong data-count="70">70</strong><span>rokov tradície</span></li>
+          <li><strong>100<small>%</small></strong><span>vegánske a prírodné</span></li>
+          <li><strong>0</strong><span>testov na zvieratách</span></li>
+          <li><strong data-count="22">22</strong><span>produktov v rade</span></li>
+        </ul>
+      </div>
+      <div class="wrap badges reveal">
+        <span>Dermatologicky testované</span><span>Pre citlivú pleť</span><span>Bez parabénov</span><span>Bioaktívne zložky</span>
+      </div>
+    </section>
+
+    <!-- PRODUKTY -->
+    <section class="products" id="produkty">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Katalóg</p>
+          <h2>Produkty</h2>
+          <p class="muted">Otáčajte karuselom ťahaním alebo šípkami. Kliknutím na produkt zobrazíte detail.</p>
+        </div>
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Filtrovať podľa kategórie" id="chips"></div>
+          <button class="view-toggle" id="viewToggle" aria-pressed="false">Zobraziť ako mriežku</button>
+        </div>
+      </div>
+
+      <div class="carousel" id="carousel" aria-roledescription="karusel" aria-label="Produkty HV Hydrocare">
+        <div class="ring-stage"><div class="ring" id="ring"></div></div>
+        <div class="carousel-ctrl">
+          <button class="arrow" id="prev" aria-label="Predchádzajúci produkt">←</button>
+          <p class="now" id="now" aria-live="polite"></p>
+          <button class="arrow" id="next" aria-label="Ďalší produkt">→</button>
+        </div>
+      </div>
+      <div class="wrap grid" id="grid" hidden></div>
+    </section>
+
+    <!-- RITUÁL -->
+    <section class="ritual" id="ritual">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow dark">Denný rituál</p>
+          <h2>Štyri kroky k&nbsp;<em>hydratovanej pleti</em></h2>
+        </div>
+        <ol class="steps">
+          <li class="reveal" data-product="1"><span class="num">01</span><img src="img/prod01.jpg" alt="" loading="lazy"><h3>Čistenie</h3><p>Hydro Care Cleanser odstráni nečistoty a make-up bez vysušenia.</p></li>
+          <li class="reveal" data-product="2"><span class="num">02</span><img src="img/prod02.jpg" alt="" loading="lazy"><h3>Sérum</h3><p>Hydro Care Serum dodá hyalurón a kolagén hlboko do pokožky.</p></li>
+          <li class="reveal" data-product="4"><span class="num">03</span><img src="img/prod04.jpg" alt="" loading="lazy"><h3>Krém</h3><p>Hydro Care Cream 24 hydratuje a chráni celý deň.</p></li>
+          <li class="reveal" data-product="3"><span class="num">04</span><img src="img/prod03.jpg" alt="" loading="lazy"><h3>Ochrana</h3><p>Hydro Care Protection s UVA/UVB filtrami proti predčasnému starnutiu.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- OCENENIA -->
+    <section class="awards" id="ocenenia">
+      <div class="wrap awards-grid">
+        <div class="medal-wrap reveal" id="medal">
+          <img src="img/medal.jpg" alt="Medaila HV Hydrocare Slovakia" width="840" height="840">
+          <span class="shine" aria-hidden="true"></span>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow gold">Ocenenia 2024</p>
+          <h2>V roku 2024 sme získali <em>dve ocenenia</em></h2>
+          <div class="award-cards">
+            <article>
+              <h3>Marie Claire Beauty Awards</h3>
+              <p>Prístroj <b>MAGIQSKIN Home</b> — najlepšia technologická inovácia.</p>
+            </article>
+            <article>
+              <h3>ELLE Future of Beauty Awards</h3>
+              <p>Šampón <b>HV Hair Care</b> — najlepší hydratačný šampón roka 2024.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="contact" id="kontakt">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Kontakt</p>
+          <h2>Ozvite sa nám</h2>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <h3>HV Hydrocare Slovakia</h3>
+            <a href="mailto:info@hydrocare.sk">info@hydrocare.sk</a>
+            <a href="tel:+421944777998">+421 944 777 998</a>
+            <div class="socials">
+              <a href="https://instagram.com/hydrocare.sk" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://facebook.com/hydrocare.sk" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </article>
+          <article class="contact-card reveal">
+            <h3>ENVA — salón krásnej pleti</h3>
+            <a href="mailto:enva.salonkrasnejpleti@gmail.com">enva.salonkrasnejpleti@gmail.com</a>
+            <a href="tel:+421917559033">+421 917 559 033</a>
+            <div class="socials">
+              <a href="https://instagram.com/enva_salonkrasnejpleti" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://facebook.com/envasalonkrasnejpleti" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img src="img/logo.png" alt="HV Hydrocare Slovakia" class="foot-logo" width="1000" height="934" loading="lazy">
+    <p>© HV Hydrocare Slovakia · Vegánske · Prírodné · Netestované na zvieratách</p>
+  </footer>
+
+  <!-- DETAIL PRODUKTU -->
+  <dialog class="modal" id="modal" aria-labelledby="mTitle">
+    <button class="close" id="mClose" aria-label="Zavrieť">✕</button>
+    <div class="modal-body">
+      <div class="m-img"><img id="mImg" alt=""></div>
+      <div class="m-text">
+        <p class="eyebrow dark" id="mLine"></p>
+        <h2 id="mTitle"></h2>
+        <p class="m-tag" id="mTag"></p>
+        <p id="mDesc"></p>
+        <h3>Kľúčové zložky</h3>
+        <ul class="ingr" id="mIngr"></ul>
+        <a href="#kontakt" class="btn btn-primary" id="mCta">Mám záujem</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
